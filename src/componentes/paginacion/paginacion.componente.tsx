@@ -1,6 +1,6 @@
 import './paginacion.css';
-import { useAppDispatch } from '../../store';
-import { DECREMENT_PAGE, INCREMENT_PAGE } from '../../store/paginacion/slice';
+import { useAppDispatch } from '../../redux/store';
+import { DECREMENT_PAGE, INCREMENT_PAGE } from '../../redux/slices/paginacionSlice';
 import { IPaginacion } from './paginacion.interface';
 
 /**

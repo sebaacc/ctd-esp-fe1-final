@@ -1,7 +1,7 @@
-import { useAppSelector } from '../../store';
+import { useAppSelector } from '../../redux/store';
 import './grilla-personajes.css';
 import TarjetaPersonaje from './tarjeta-personaje.componente';
-import { IGrillaPersonajes } from '../../interface/grilla-personajes';
+import { IGrillaPersonajes } from '../../interfaces/grilla-personajes';
 
 /**
  * Grilla de personajes para la pagina de inicio
