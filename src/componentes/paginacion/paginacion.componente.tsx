@@ -4,7 +4,7 @@ import {
   disminuirPagina,
   incrementarPagina,
 } from "../../redux/slices/paginacionSlice";
-import { IPaginacion } from "./paginacion.interface";
+import { IPaginacion } from "../../interfaces/paginacion";
 
 /**
  * Componente que contiene los botones para paginar

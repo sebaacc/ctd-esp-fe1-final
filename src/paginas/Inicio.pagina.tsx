@@ -27,13 +27,15 @@ const PaginaInicio = () => {
   const limpiar = () => {
     dispatch(clearFiltro());
     dispatch(getPersonajes({ dato: paginaState, parametro: "page" }));
-  }
+  };
 
   return (
     <div className="container">
       <div className="actions">
         <h3>Catálogo de Personajes</h3>
-        <button className="danger" onClick={limpiar}>Limpiar Filtros</button>
+        <button className="danger" onClick={limpiar}>
+          Limpiar Filtros
+        </button>
       </div>
       <Filtros />
       <Paginacion paginaState={paginaState} />

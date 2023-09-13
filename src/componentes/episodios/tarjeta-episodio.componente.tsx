@@ -1,6 +1,6 @@
 
 import './tarjeta-episodio.css';
-import { IEpisodio } from './tarjeta-episodios.interface';
+import { IEpisodio } from '../../interfaces/tarjeta-episodios';
 
 /**
  * Tarjeta para cada episodio dentro de la vista de personaje.
