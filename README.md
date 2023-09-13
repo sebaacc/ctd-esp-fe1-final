@@ -1,5 +1,5 @@
 # ctd-esp-fe1-final
-Examen Final de Frontend IV
+Examen Final de Frontend IV - Sebastián Alejo Markoja
 
 ## Indice
 * [Requisitos](#requisitos)
