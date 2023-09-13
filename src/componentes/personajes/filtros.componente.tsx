@@ -11,7 +11,9 @@ const Filtros = () => {
     const estadoActual: string = e.target.value;
 
     dispatch(setFiltro(e.target.value));
-    dispatch(getPersonajes({ dato: estadoActual, parametro: "name" }));
+    if(estadoActual != " "){
+      dispatch(getPersonajes({ dato: estadoActual, parametro: "name" }));
+    }
   };
 
   return (

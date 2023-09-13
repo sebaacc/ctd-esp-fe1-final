@@ -17,8 +17,8 @@ import { IEpisodio } from "../interfaces/tarjeta-episodios";
  */
 const PaginaDetalle = () => {
   const episodio: IEpisodio = {
-    nombre: "Juan",
-    numeroDeEpisodio: "1l",
+    nombre: "Sebastián",
+    numeroDeEpisodio: "469",
     fechaDeLanzamiento: new Date(),
   };
 
