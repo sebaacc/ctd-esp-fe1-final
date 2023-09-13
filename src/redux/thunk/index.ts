@@ -11,14 +11,13 @@ export const getPersonajes = createAsyncThunk(
     parametro: string;
   }): Promise<IPersonaje[]> => {
     try {
-      const resp = await fetch(
+      const res = await fetch(
         `https://rickandmortyapi.com/api/character/?${parametro}=${dato}`
       );
-      const data = await resp.json();
-      const resultsCharacters = data.results;
-      return resultsCharacters;
+      const data = await res.json();
+      const personajes = data.results;
+      return personajes;
     } catch (error) {
-      console.error("Error fetching data:", error);
       throw error;
     }
   }
@@ -27,8 +26,8 @@ export const getPersonajes = createAsyncThunk(
 // export const getPersonajeID = createAsyncThunk(
 //   "personajes/getPersonajeID",
 //   async (id: number): Promise<IPersonaje> => {
-//     const resp = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
-//     const data = await resp.json();
+//     const res = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
+//     const data = await res.json();
 //     return data;
 //   }
 // );

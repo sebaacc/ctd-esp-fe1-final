@@ -18,11 +18,11 @@ import { useEffect } from "react";
 const PaginaInicio = () => {
   const dispatch = useAppDispatch();
   const { listaPersonajes } = useAppSelector((state) => state.personajes);
-  const { value: valorPagina } = useAppSelector((state) => state.paginas);
+  const { value: paginaState } = useAppSelector((state) => state.paginas);
 
   useEffect(() => {
-    dispatch(getPersonajes({ dato: valorPagina, parametro: "page" }));
-  }, [valorPagina]);
+    dispatch(getPersonajes({ dato: paginaState, parametro: "page" }));
+  }, [paginaState]);
 
   return (
     <div className="container">
@@ -31,10 +31,9 @@ const PaginaInicio = () => {
         <button className="danger">Limpiar Filtros</button>
       </div>
       <Filtros />
-      <Paginacion valorPagina={valorPagina} />
-
+      <Paginacion paginaState={paginaState} />
       <GrillaPersonajes dataPersonajes={listaPersonajes} />
-      <Paginacion valorPagina={valorPagina} />
+      <Paginacion paginaState={paginaState} />
     </div>
   );
 };

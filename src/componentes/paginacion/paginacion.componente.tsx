@@ -1,6 +1,9 @@
 import "./paginacion.css";
 import { useAppDispatch } from "../../redux/store";
-import { incrementar, reducir } from "../../redux/slices/paginacionSlice";
+import {
+  disminuirPagina,
+  incrementarPagina,
+} from "../../redux/slices/paginacionSlice";
 import { IPaginacion } from "./paginacion.interface";
 
 /**
@@ -11,15 +14,22 @@ import { IPaginacion } from "./paginacion.interface";
  *
  * @returns un JSX element
  */
-const Paginacion = ({ valorPagina }: IPaginacion) => {
+const Paginacion = ({ paginaState }: IPaginacion) => {
   const dispatch = useAppDispatch();
 
   return (
     <div className="paginacion">
-      <button onClick={() => dispatch(incrementar())} className={"primary"}>
+      <button
+        disabled={paginaState <= 1 ? true : false}
+        onClick={() => dispatch(disminuirPagina())}
+        className={"primary"}
+      >
         Anterior
       </button>
-      <button onClick={() => dispatch(reducir())} className={"primary"}>
+      <button
+        onClick={() => dispatch(incrementarPagina())}
+        className={"primary"}
+      >
         Siguiente
       </button>
     </div>
