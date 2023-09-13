@@ -11,22 +11,22 @@ const Filtros = () => {
     const estadoActual: string = e.target.value;
 
     dispatch(setFiltro(e.target.value));
-    if(estadoActual != " "){
+    if (estadoActual !== " ") {
       dispatch(getPersonajes({ dato: estadoActual, parametro: "name" }));
     }
   };
 
   return (
-      <div className="filtros">
-        <label htmlFor="nombre">Filtrar por nombre:</label>
-        <input
-          type="text"
-          placeholder="Rick, Morty, Beth, Alien, ...etc"
-          name="nombre"
-          onChange={filtro}
-          value={filtroState}
-        />
-      </div>
+    <div className="filtros">
+      <label htmlFor="nombre">Filtrar por nombre:</label>
+      <input
+        type="text"
+        placeholder="Rick, Morty, Beth, Alien, ...etc"
+        name="nombre"
+        onChange={filtro}
+        value={filtroState}
+      />
+    </div>
   );
 };
 
