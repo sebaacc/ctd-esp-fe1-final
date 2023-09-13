@@ -26,6 +26,7 @@ const PaginaInicio = () => {
 
   const limpiar = () => {
     dispatch(clearFiltro());
+    dispatch(getPersonajes({ dato: paginaState, parametro: "page" }));
   }
 
   return (
