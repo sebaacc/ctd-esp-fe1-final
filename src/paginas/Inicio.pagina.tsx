@@ -4,6 +4,7 @@ import Paginacion from "../componentes/paginacion/paginacion.componente";
 import { useAppSelector, useAppDispatch } from "../redux/store";
 import { getPersonajes } from "../redux/thunk";
 import { useEffect } from "react";
+import { clearFiltro } from "../redux/slices/filtroSlice";
 
 /**
  * Esta es la pagina principal. Aquí se debera ver el panel de filtros junto con la grilla de personajes.
@@ -23,12 +24,15 @@ const PaginaInicio = () => {
     dispatch(getPersonajes({ dato: paginaState, parametro: "page" }));
   }, [paginaState]);
 
+  const limpiar = () => {
+    dispatch(clearFiltro());
+  }
 
   return (
     <div className="container">
       <div className="actions">
         <h3>Catálogo de Personajes</h3>
-        <button className="danger">Limpiar Filtros</button>
+        <button className="danger" onClick={limpiar}>Limpiar Filtros</button>
       </div>
       <Filtros />
       <Paginacion paginaState={paginaState} />
