@@ -18,23 +18,23 @@ import { useEffect } from "react";
 const PaginaInicio = () => {
   const dispatch = useAppDispatch();
   const { listaPersonajes } = useAppSelector((state) => state.personajes);
-  const { value: pageValue } = useAppSelector((state) => state.paginas);
+  const { value: valorPagina } = useAppSelector((state) => state.paginas);
 
   useEffect(() => {
-    dispatch(getPersonajes({ dato: pageValue, parametro: "page" }));
-  }, [pageValue]);
+    dispatch(getPersonajes({ dato: valorPagina, parametro: "page" }));
+  }, [valorPagina]);
 
   return (
     <div className="container">
       <div className="actions">
         <h3>Catálogo de Personajes</h3>
-        <button className="danger">Limpiar Filtro</button>
+        <button className="danger">Limpiar Filtros</button>
       </div>
       <Filtros />
-      <Paginacion pageValue={pageValue} />
+      <Paginacion valorPagina={valorPagina} />
 
       <GrillaPersonajes dataPersonajes={listaPersonajes} />
-      <Paginacion pageValue={pageValue} />
+      <Paginacion valorPagina={valorPagina} />
     </div>
   );
 };

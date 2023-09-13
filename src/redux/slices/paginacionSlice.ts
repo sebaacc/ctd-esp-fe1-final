@@ -9,13 +9,13 @@ const initialState: PaginacionState = {
 };
 
 export const paginacionSlice = createSlice({
-  name: "page",
+  name: "pagina",
   initialState: initialState,
   reducers: {
-    INCREMENT_PAGE: (state) => {
+    incrementar: (state) => {
       state.value += 1;
     },
-    DECREMENT_PAGE: (state) => {
+    reducir: (state) => {
       state.value -= 1;
     },
   },
@@ -23,6 +23,6 @@ export const paginacionSlice = createSlice({
 
 const paginacionReducer = paginacionSlice.reducer;
 
-export const { INCREMENT_PAGE, DECREMENT_PAGE } = paginacionSlice.actions;
+export const { incrementar, reducir } = paginacionSlice.actions;
 
 export default paginacionReducer;

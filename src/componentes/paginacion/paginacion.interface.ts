@@ -1,6 +1,3 @@
-
-  
-  export interface IPaginacion {
-    pageValue: number
-  }
-  
+export interface IPaginacion {
+  valorPagina: number;
+}
