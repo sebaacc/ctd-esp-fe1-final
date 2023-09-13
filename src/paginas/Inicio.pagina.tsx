@@ -3,7 +3,6 @@ import GrillaPersonajes from "../componentes/personajes/grilla-personajes.compon
 import Paginacion from "../componentes/paginacion/paginacion.componente";
 import { useAppSelector, useAppDispatch } from "../redux/store";
 import { getPersonajes } from "../redux/thunk";
-
 import { useEffect } from "react";
 
 /**
@@ -23,6 +22,7 @@ const PaginaInicio = () => {
   useEffect(() => {
     dispatch(getPersonajes({ dato: paginaState, parametro: "page" }));
   }, [paginaState]);
+
 
   return (
     <div className="container">

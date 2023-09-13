@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 export type PaginacionState = {
   value: number;
 };
-
 const initialState: PaginacionState = {
   value: 1,
 };
@@ -24,5 +23,4 @@ export const paginacionSlice = createSlice({
 const paginacionReducer = paginacionSlice.reducer;
 
 export const { incrementarPagina, disminuirPagina } = paginacionSlice.actions;
-
 export default paginacionReducer;

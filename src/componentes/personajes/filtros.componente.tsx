@@ -1,33 +1,32 @@
-import { useRef } from "react";
 import "./filtros.css";
 import { useAppDispatch } from "../../redux/store";
 import { getPersonajes } from "../../redux/thunk";
+import { useRef } from "react";
 
 const Filtros = () => {
-  const ref = useRef<HTMLInputElement | null>(null);
+  const buscador = useRef<null | HTMLInputElement>(null);
   const dispatch = useAppDispatch();
 
-  const filterByName = () => {
-    if (!ref.current) return;
-
-    if (ref.current?.value.trim() === "") {
-      ref.current.value = "";
+  const filtro = () => {
+    if (!buscador.current) return;
+    if (buscador.current?.value.trim() === " ") {
+      buscador.current.value = " ";
       return;
     }
-
-    const name = ref.current.value;
-    console.log(name);
-    dispatch(() => dispatch(getPersonajes({ dato: name, parametro: "name" })));
+    const nombre = buscador.current.value;
+    dispatch(() =>
+      dispatch(getPersonajes({ dato: nombre, parametro: "name" }))
+    );
   };
   return (
     <div className="filtros">
       <label htmlFor="nombre">Filtrar por nombre:</label>
       <input
         type="text"
-        ref={ref}
+        ref={buscador}
         placeholder="Rick, Morty, Beth, Alien, ...etc"
         name="nombre"
-        onChange={filterByName}
+        onChange={filtro}
       />
     </div>
   );
