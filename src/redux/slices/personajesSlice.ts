@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IPersonaje } from "../../interfaces/personaje";
+import { IPersonaje } from "../../componentes/personajes/grilla-personajes.componente";
 import { getPersonajes } from "../thunk";
 
 export type PersonajeState = {

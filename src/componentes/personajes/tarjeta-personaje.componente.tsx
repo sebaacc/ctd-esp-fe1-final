@@ -1,6 +1,5 @@
 import BotonFavorito from "../botones/boton-favorito.componente";
 import "./tarjeta-personaje.css";
-import { ITarjetaPersonaje } from "../../interfaces/grilla-personajes";
 
 /**
  * Tarjeta para cada personaje dentro de la grilla de personajes.
@@ -10,6 +9,12 @@ import { ITarjetaPersonaje } from "../../interfaces/grilla-personajes";
  *
  * @returns un JSX element
  */
+export interface ITarjetaPersonaje {
+  nombre: string;
+  imagen: string;
+  esFavorito: boolean;
+}
+
 const TarjetaPersonaje = ({
   nombre,
   imagen,

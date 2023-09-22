@@ -1,6 +1,5 @@
 
 import './tarjeta-episodio.css';
-import { IEpisodio } from '../../interfaces/tarjeta-episodios';
 
 /**
  * Tarjeta para cada episodio dentro de la vista de personaje.
@@ -11,7 +10,11 @@ import { IEpisodio } from '../../interfaces/tarjeta-episodios';
  * @returns un JSX element 
  */
 
-
+export interface IEpisodio {
+    nombre: string;
+    numeroDeEpisodio: string;
+    fechaDeLanzamiento: Date;
+}
 
 const TarjetaEpisodio = ({nombre, numeroDeEpisodio, fechaDeLanzamiento}: IEpisodio) => {
     const fechaString = fechaDeLanzamiento.toLocaleDateString();

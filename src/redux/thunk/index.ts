@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { IPersonaje } from "../../interfaces/personaje";
+import { IPersonaje } from "../../componentes/personajes/grilla-personajes.componente";
 
 export const getPersonajes = createAsyncThunk(
   "personajes/getPersonajes",

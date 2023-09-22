@@ -1,7 +1,6 @@
 import { useAppSelector } from "../../redux/store";
 import "./grilla-personajes.css";
 import TarjetaPersonaje from "./tarjeta-personaje.componente";
-import { IGrillaPersonajes } from "../../interfaces/grilla-personajes";
 
 /**
  * Grilla de personajes para la pagina de inicio
@@ -11,6 +10,27 @@ import { IGrillaPersonajes } from "../../interfaces/grilla-personajes";
  *
  * @returns un TSX element
  */
+
+export interface IPersonaje {
+  id?: number;
+  name: string;
+  status?: string;
+  species?: string;
+  type?: string;
+  gender?: string;
+  origin?: {};
+  location?: {};
+  image: string;
+  episode?: [];
+  url: string;
+  created: string;
+}
+
+export interface IGrillaPersonajes {
+  dataPersonajes: IPersonaje[];
+}
+
+
 const GrillaPersonajes = ({ dataPersonajes }: IGrillaPersonajes) => {
   const { isError, isLoading } = useAppSelector((state) => state.personajes);
 
