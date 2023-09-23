@@ -1,8 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IPersonaje } from "../../componentes/personajes/grilla-personajes.componente";
+
+export interface IFavorito {
+    nombre: string;
+    imagen: string;
+  }
 
 export type favoritosState = {
-  listaFavoritos: IPersonaje[];
+  listaFavoritos: IFavorito[];
 };
 
 const initialState: favoritosState = {
@@ -18,7 +22,7 @@ export const favoritosSlice = createSlice({
         },
     removeFavorito: (state, action) => {
         state.listaFavoritos = state.listaFavoritos.filter(
-            (item) => item.id !== action.payload.id
+            (item) => item.nombre !== action.payload.nombre
           );
       },
     clearFavoritos: (state) => {

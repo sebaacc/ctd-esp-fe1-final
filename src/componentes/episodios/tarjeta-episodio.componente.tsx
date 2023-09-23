@@ -16,6 +16,16 @@ export interface IEpisodio {
     fechaDeLanzamiento: Date;
 }
 
+export interface episodio {
+    id: number;
+    name: string;
+    air_date: string;
+    episode: string;
+    characters: string[];
+    url: string;
+    created: Date;
+  }  
+
 const TarjetaEpisodio = ({nombre, numeroDeEpisodio, fechaDeLanzamiento}: IEpisodio) => {
     const fechaString = fechaDeLanzamiento.toLocaleDateString();
     return <div className="tarjeta-episodio">

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useAppSelector } from "../../redux/store";
 import "./grilla-personajes.css";
 import TarjetaPersonaje from "./tarjeta-personaje.componente";
@@ -30,9 +31,19 @@ export interface IGrillaPersonajes {
   dataPersonajes: IPersonaje[];
 }
 
-
 const GrillaPersonajes = ({ dataPersonajes }: IGrillaPersonajes) => {
   const { isError, isLoading } = useAppSelector((state) => state.personajes);
+
+
+ 
+//algo para borrar
+const favoritosState = useAppSelector((state) => state.favoritos.listaFavoritos);
+useEffect(() => {
+  console.log(favoritosState);
+}, [favoritosState])
+
+
+
 
   return (
     <div className="grilla-personajes">
