@@ -1,7 +1,6 @@
-import GrillaPersonajes from "../componentes/personajes/grilla-personajes.componente";
 import TarjetaPersonaje from "../componentes/personajes/tarjeta-personaje.componente";
-import { IFavorito } from "../redux/slices/favoritosSlice";
-import { useAppSelector } from "../redux/store";
+import { IFavorito, clearFavoritos } from "../redux/slices/favoritosSlice";
+import { useAppDispatch, useAppSelector } from "../redux/store";
 
 /**
  * Esta es la pagina de favoritos. Aquí se deberan ver todos los personajes marcados como favoritos
@@ -12,11 +11,10 @@ import { useAppSelector } from "../redux/store";
  * @returns la pagina de favoritos
  */
 const PaginaFavoritos = () => {
-  const { listaPersonajes } = useAppSelector((state) => state.personajes);
-  const { isError, isLoading } = useAppSelector((state) => state.personajes);
   const favoritosState = useAppSelector(
     (state) => state.favoritos.listaFavoritos
   );
+  const dispatch = useAppDispatch();
 
   const esFavorito = ({ nombre, imagen }: IFavorito): boolean => {
     const favoritoIndex = favoritosState.findIndex(
@@ -28,31 +26,34 @@ const PaginaFavoritos = () => {
       return false;
     }
   };
+
+  const limpiarFavs = () => {
+    dispatch(clearFavoritos());
+  };
   return (
     <div className="container">
       <div className="actions">
         <h3>Personajes Favoritos</h3>
-        <button className="danger">Test Button</button>
+        <button className="danger" onClick={limpiarFavs}>
+          Limpiar Favoritos
+        </button>
       </div>
       <div className="grilla-personajes">
-        {isLoading ? (
-          <p>Cargando, espere por favor...</p>
+        {favoritosState?.map((personaje, index) => (
+          <TarjetaPersonaje
+            key={index}
+            nombre={personaje.nombre}
+            imagen={personaje.imagen}
+            esFavorito={esFavorito({
+              nombre: personaje.nombre,
+              imagen: personaje.imagen,
+            })}
+          />
+        ))}
+        {favoritosState.length == 0 ? (
+          <h3>No hay favoritos, encontrá los tuyos en el Inicio!</h3>
         ) : (
-          favoritosState?.map((personaje) => (
-            <TarjetaPersonaje
-              nombre={personaje.nombre}
-              imagen={personaje.imagen}
-              esFavorito={esFavorito({
-                nombre: personaje.nombre,
-                imagen: personaje.imagen,
-              })}
-            />
-          ))
-        )}
-        {isError && (
-          <h3>
-            No se han encontrado resultados, por favor vuelva a intentarlo
-          </h3>
+          ""
         )}
       </div>
     </div>

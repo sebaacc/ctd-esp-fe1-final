@@ -38,12 +38,6 @@ const GrillaPersonajes = ({ dataPersonajes }: IGrillaPersonajes) => {
     (state) => state.favoritos.listaFavoritos
   );
 
-  //comentario/ borrar
-  useEffect(() => {
-    console.log(favoritosState);
-  }, [favoritosState]);
-
-
   const esFavorito = ({nombre,imagen}:IFavorito):boolean => {
       const favoritoIndex = favoritosState.findIndex(
         (item) => item.nombre === nombre
