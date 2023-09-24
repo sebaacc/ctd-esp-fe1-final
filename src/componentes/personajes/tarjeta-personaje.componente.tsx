@@ -1,4 +1,4 @@
-import { addFavorito, removeFavorito } from "../../redux/slices/favoritosSlice";
+import { handleFavorito } from "../../redux/slices/favoritosSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import BotonFavorito from "../botones/boton-favorito.componente";
 import "./tarjeta-personaje.css";
@@ -23,22 +23,20 @@ const TarjetaPersonaje = ({
   esFavorito,
 }: ITarjetaPersonaje) => {
   const dispatch = useAppDispatch();
-  const favoritosState = useAppSelector((state) => state.favoritos.listaFavoritos);
+  const favoritosState = useAppSelector(
+    (state) => state.favoritos.listaFavoritos
+  );
 
-  const handleFavorito = () => {
-   
-      dispatch(addFavorito({nombre,imagen}));
-        
-      //dispatch(removeFavorito({nombre,imagen}));
-    
+  const clickFavorito = () => {
+    dispatch(handleFavorito({ nombre, imagen }));
   };
 
   return (
     <div className="tarjeta-personaje">
       <img src={imagen} alt={nombre} />
-      <div className="tarjeta-personaje-body" onClick={handleFavorito}>
+      <div className="tarjeta-personaje-body" >
         <span>{nombre}</span>
-        <BotonFavorito esFavorito={esFavorito} />
+        <BotonFavorito esFavorito={esFavorito} onClick={clickFavorito}/>
       </div>
     </div>
   );

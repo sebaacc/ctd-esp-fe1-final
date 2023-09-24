@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAppSelector } from "../../redux/store";
 import "./grilla-personajes.css";
 import TarjetaPersonaje from "./tarjeta-personaje.componente";
+import { IFavorito } from "../../redux/slices/favoritosSlice";
 
 /**
  * Grilla de personajes para la pagina de inicio
@@ -34,16 +35,24 @@ export interface IGrillaPersonajes {
 const GrillaPersonajes = ({ dataPersonajes }: IGrillaPersonajes) => {
   const { isError, isLoading } = useAppSelector((state) => state.personajes);
 
+  //algo para borrar
+  const favoritosState = useAppSelector(
+    (state) => state.favoritos.listaFavoritos
+  );
+  useEffect(() => {
+    console.log(favoritosState);
+  }, [favoritosState]);
 
- 
-//algo para borrar
-const favoritosState = useAppSelector((state) => state.favoritos.listaFavoritos);
-useEffect(() => {
-  console.log(favoritosState);
-}, [favoritosState])
-
-
-
+  const esFavorito = ({nombre,imagen}:IFavorito):boolean => {
+      const favoritoIndex = favoritosState.findIndex(
+        (item) => item.nombre === nombre
+      );
+      if (favoritoIndex !== -1) {
+        return true;
+      } else {
+        return false;
+      }
+  }
 
   return (
     <div className="grilla-personajes">
@@ -55,7 +64,7 @@ useEffect(() => {
             key={personaje.id}
             nombre={personaje.name}
             imagen={personaje.image}
-            esFavorito={false}
+            esFavorito={esFavorito({nombre: personaje.name, imagen: personaje.image})}
           />
         ))
       )}

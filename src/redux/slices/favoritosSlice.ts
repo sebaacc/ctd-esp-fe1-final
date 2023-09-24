@@ -17,7 +17,7 @@ export const favoritosSlice = createSlice({
   name: "favoritos",
   initialState: initialState,
   reducers: {
-    addFavorito: (state, action) => {
+    handleFavorito: (state, action) => {
       const favoritoIndex = state.listaFavoritos.findIndex(
         (item) => item.nombre === action.payload.nombre
       );
@@ -28,19 +28,13 @@ export const favoritosSlice = createSlice({
         state.listaFavoritos.push(action.payload);
       }
     },
-    removeFavorito: (state, action) => {
-      state.listaFavoritos = state.listaFavoritos.filter(
-        (item) => item.nombre !== action.payload.nombre
-      );
-    },
     clearFavoritos: (state) => {
       state.listaFavoritos = [];
     },
   },
 });
 
-export const { addFavorito, removeFavorito, clearFavoritos } =
-  favoritosSlice.actions;
+export const { handleFavorito, clearFavoritos } = favoritosSlice.actions;
 
 const favoritosReducer = favoritosSlice.reducer;
 
