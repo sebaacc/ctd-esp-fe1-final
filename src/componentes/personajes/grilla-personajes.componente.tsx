@@ -38,16 +38,16 @@ const GrillaPersonajes = ({ dataPersonajes }: IGrillaPersonajes) => {
     (state) => state.favoritos.listaFavoritos
   );
 
-  const esFavorito = ({nombre,imagen}:IFavorito):boolean => {
-      const favoritoIndex = favoritosState.findIndex(
-        (item) => item.nombre === nombre
-      );
-      if (favoritoIndex !== -1) {
-        return true;
-      } else {
-        return false;
-      }
-  }
+  const esFavorito = ({ nombre, imagen }: IFavorito): boolean => {
+    const favoritoIndex = favoritosState.findIndex(
+      (item) => item.nombre === nombre
+    );
+    if (favoritoIndex !== -1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   return (
     <div className="grilla-personajes">
@@ -59,7 +59,10 @@ const GrillaPersonajes = ({ dataPersonajes }: IGrillaPersonajes) => {
             key={personaje.id}
             nombre={personaje.name}
             imagen={personaje.image}
-            esFavorito={esFavorito({nombre: personaje.name, imagen: personaje.image})}
+            esFavorito={esFavorito({
+              nombre: personaje.name,
+              imagen: personaje.image,
+            })}
           />
         ))
       )}

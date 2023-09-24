@@ -22,12 +22,3 @@ export const getPersonajes = createAsyncThunk(
     }
   }
 );
-
-// export const getPersonajeID = createAsyncThunk(
-//   "personajes/getPersonajeID",
-//   async (id: number): Promise<IPersonaje> => {
-//     const res = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
-//     const data = await res.json();
-//     return data;
-//   }
-// );

@@ -5,7 +5,6 @@ import {
   incrementarPagina,
 } from "../../redux/slices/paginacionSlice";
 
-
 /**
  * Componente que contiene los botones para paginar
  *
@@ -16,7 +15,7 @@ import {
  */
 
 export interface IPaginacion {
-  paginaState: number
+  paginaState: number;
 }
 
 const Paginacion = ({ paginaState }: IPaginacion) => {

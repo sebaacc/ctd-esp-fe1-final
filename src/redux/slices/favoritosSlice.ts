@@ -30,12 +30,11 @@ export const favoritosSlice = createSlice({
     },
     clearFavoritos: (state) => {
       state.listaFavoritos = [];
-    }
+    },
   },
 });
 
-export const { handleFavorito, clearFavoritos } =
-  favoritosSlice.actions;
+export const { handleFavorito, clearFavoritos } = favoritosSlice.actions;
 
 const favoritosReducer = favoritosSlice.reducer;
 
