@@ -34,14 +34,15 @@ export interface IGrillaPersonajes {
 
 const GrillaPersonajes = ({ dataPersonajes }: IGrillaPersonajes) => {
   const { isError, isLoading } = useAppSelector((state) => state.personajes);
-
-  //algo para borrar
   const favoritosState = useAppSelector(
     (state) => state.favoritos.listaFavoritos
   );
+
+  //comentario/ borrar
   useEffect(() => {
     console.log(favoritosState);
   }, [favoritosState]);
+
 
   const esFavorito = ({nombre,imagen}:IFavorito):boolean => {
       const favoritoIndex = favoritosState.findIndex(
