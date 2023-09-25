@@ -1,17 +1,7 @@
-import { useEffect } from "react";
 import { useAppSelector } from "../../redux/store";
 import "./grilla-personajes.css";
 import TarjetaPersonaje from "./tarjeta-personaje.componente";
-import { IFavorito } from "../../redux/slices/favoritosSlice";
-
-/**
- * Grilla de personajes para la pagina de inicio
- *
- * Deberás agregar las funciones necesarias para mostrar y paginar los personajes
- *
- *
- * @returns un TSX element
- */
+import { esFavorito } from "../../funciones/esFavorito";
 
 export interface IPersonaje {
   id?: number;
@@ -32,22 +22,18 @@ export interface IGrillaPersonajes {
   dataPersonajes: IPersonaje[];
 }
 
+/**
+ * @author Sebastián Alejo Markoja
+ * @description Grilla de personajes para la pagina de inicio. Se encuentran las funciones necesarias para mostrar y paginar los personajes
+ * @param {IGrillaPersonajes} dataPersonajes
+ * @returns la grilla de Personajes
+ */
+
 const GrillaPersonajes = ({ dataPersonajes }: IGrillaPersonajes) => {
   const { isError, isLoading } = useAppSelector((state) => state.personajes);
   const favoritosState = useAppSelector(
     (state) => state.favoritos.listaFavoritos
   );
-
-  const esFavorito = ({ nombre, imagen }: IFavorito): boolean => {
-    const favoritoIndex = favoritosState.findIndex(
-      (item) => item.nombre === nombre
-    );
-    if (favoritoIndex !== -1) {
-      return true;
-    } else {
-      return false;
-    }
-  };
 
   return (
     <div className="grilla-personajes">
@@ -59,10 +45,7 @@ const GrillaPersonajes = ({ dataPersonajes }: IGrillaPersonajes) => {
             key={personaje.id}
             nombre={personaje.name}
             imagen={personaje.image}
-            esFavorito={esFavorito({
-              nombre: personaje.name,
-              imagen: personaje.image,
-            })}
+            esFavorito={esFavorito(personaje.name, favoritosState)}
           />
         ))
       )}

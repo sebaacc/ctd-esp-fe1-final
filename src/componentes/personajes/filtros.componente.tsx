@@ -7,6 +7,12 @@ const Filtros = () => {
   const dispatch = useAppDispatch();
   const filtroState = useAppSelector((state) => state.filtro.filtroValor);
 
+  /**
+   * @author Sebastián Alejo Markoja
+   * @description Funciona para actualizar el estado del input buscador a medida que el usuario escribe. Si el input vuelve a estar vacío, se vuelve a renderizar la grilla de personajes llamando el reducer "getPersonajes".
+   * @param {React.ChangeEvent<HTMLInputElement>} e Recibe el valor del input buscador actual.
+   * @returns {void}
+   */
   const filtro = (e: React.ChangeEvent<HTMLInputElement>) => {
     const estadoActual: string = e.target.value;
 

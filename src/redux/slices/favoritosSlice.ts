@@ -13,6 +13,11 @@ const initialState: favoritosState = {
   listaFavoritos: [],
 };
 
+/***
+ * @author Sebastián Alejo Markoja
+ * @description Slice con reducers para agregar/quitar y limpiar el estado "favoritos". El estado inicial de la lista de favoritos es un array vacío.
+ * @returns {void}
+ */
 export const favoritosSlice = createSlice({
   name: "favoritos",
   initialState: initialState,

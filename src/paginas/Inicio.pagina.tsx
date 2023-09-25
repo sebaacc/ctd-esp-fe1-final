@@ -7,14 +7,11 @@ import { useEffect } from "react";
 import { clearFiltro } from "../redux/slices/filtroSlice";
 
 /**
- * Esta es la pagina principal. Aquí se debera ver el panel de filtros junto con la grilla de personajes.
- *
- * Uso:
- * ``` <PaginaInicio/> ```
- *
- * @returns la pagina de inicio
+ * @author Sebastián Alejo Markoja
+ * @description Esta es la pagina principal. Aquí se ve el panel de filtros junto con la grilla de personajes.
+ * @exampe Uso: <PaginaInicio/>
+ * @returns La pagina de inicio
  */
-
 const PaginaInicio = () => {
   const dispatch = useAppDispatch();
   const { listaPersonajes } = useAppSelector((state) => state.personajes);
@@ -24,6 +21,11 @@ const PaginaInicio = () => {
     dispatch(getPersonajes({ dato: paginaState, parametro: "page" }));
   }, [paginaState]);
 
+  /**
+   * @author Sebastián Alejo Markoja
+   * @description Sirve para limpiar/vaciar el filtro buscador de la página de inicio. Activa el reducer "clearFiltro" que limpia el estado de "filtroState" y luego activa el reducer "getPersonajes" para volver a consumir la api mostrando los resultados iniciales.
+   * @returns {void}
+   */
   const limpiar = () => {
     dispatch(clearFiltro());
     dispatch(getPersonajes({ dato: paginaState, parametro: "page" }));

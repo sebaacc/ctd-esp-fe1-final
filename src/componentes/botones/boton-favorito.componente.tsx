@@ -1,17 +1,17 @@
 import "./boton-favorito.css";
-/**
- * Boton que indica si un elemento es favorito o no, y da la posibilidad de marcarlo/desmarcarlo
- *
- * Deberás tipar las propiedades si usas este componente
- *
- *
- * @returns un JSX element
- */
+
 export interface IBotonFavorito {
   esFavorito: boolean;
   onClick?: () => void;
 }
 
+/**
+ * @author Sebastián Alejo Markoja
+ * @description Boton que indica si un elemento es favorito o no, y da la posibilidad de marcarlo/desmarcarlo.
+ * @param {IBotonFavorito} esFavorito
+ * @param {IBotonFavorito} onClick
+ * @returns el botón para marcar como favorito
+ */
 const BotonFavorito = ({ esFavorito, onClick }: IBotonFavorito) => {
   const src = esFavorito ? "/imagenes/star-filled.png" : "/imagenes/star.png";
   return (

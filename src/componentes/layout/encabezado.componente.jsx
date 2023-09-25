@@ -2,11 +2,10 @@ import { Link } from "react-router-dom";
 import "./encabezado.css";
 
 /**
- * Encabezado que contiene los links para navegar entre las páginas
- *
- * Uso: `<Encabezado />`
- *
- * @returns {JSX.Element}
+ * @author Sebastián Alejo Markoja
+ * @description Encabezado que contiene los links para navegar entre las páginas
+ * @example Uso: <Encabezado />
+ * @returns el encabezado/header de la página
  */
 const Encabezado = () => {
   return (
