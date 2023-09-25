@@ -1,10 +1,15 @@
 import "./Detalle.css";
 import BotonFavorito from "../componentes/botones/boton-favorito.componente";
-import TarjetaEpisodio, { IEpisodio, episodio } from "../componentes/episodios/tarjeta-episodio.componente";
+import TarjetaEpisodio, {
+  IEpisodio,
+  episodio,
+} from "../componentes/episodios/tarjeta-episodio.componente";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { esFavorito } from "../funciones/esFavorito";
 import { IFavorito, handleFavorito } from "../redux/slices/favoritosSlice";
 import { IPersonaje } from "../componentes/personajes/grilla-personajes.componente";
+import { useEffect } from "react";
+import { getEpisodiosPorIds } from "../redux/thunk";
 
 /**
  * @description Esta es la pagina de detalle. Aqui se puede mostrar la vista sobre el personaje seleccionado junto con la lista de episodios en los que aparece
@@ -15,15 +20,15 @@ import { IPersonaje } from "../componentes/personajes/grilla-personajes.componen
  * @returns la pagina de detalle
  */
 const PaginaDetalle = () => {
-  const episodio: episodio = {
-    nombre: "Sebastián",
-    numeroDeEpisodio: "469",
-    fechaDeLanzamiento: new Date(),
-  };
-
   const { personajeID } = useAppSelector((state) => state.personajeID);
   const favoritosState = useAppSelector(
     (state) => state.favoritos.listaFavoritos
+  );
+  const episodiosState = useAppSelector(
+    (state) => state.listaEpisodios.listaEpisodios
+  );
+  const { isError, isLoading } = useAppSelector(
+    (state) => state.listaEpisodios
   );
   const dispatch = useAppDispatch();
 
@@ -31,15 +36,6 @@ const PaginaDetalle = () => {
     id: personajeID.id,
     nombre: personajeID.name,
     imagen: personajeID.image,
-  };
-
-  /**
-   * @author Sebastián Alejo Markoja
-   * @description Se usa para agregar o eliminar un personaje de la lista de favoritos, cuando se hace click en el botón/elemento donde se ha colocado la función. Activa el reducer "handleFavorito" que pasa por parámetros el objeto de tipo IFavorito con el nombre y la imagen del personaje, para agregarlo o quitarlo de la lista.
-   * @returns {void}
-   */
-  const clickFavorito = () => {
-    dispatch(handleFavorito(favorito));
   };
 
   /**
@@ -73,6 +69,18 @@ const PaginaDetalle = () => {
 
   const episodeIds = extraerEpisodiosID(personajeID);
 
+  useEffect(() => {
+    dispatch(getEpisodiosPorIds(episodeIds));
+  }, [personajeID]);
+  /**
+   * @author Sebastián Alejo Markoja
+   * @description Se usa para agregar o eliminar un personaje de la lista de favoritos, cuando se hace click en el botón/elemento donde se ha colocado la función. Activa el reducer "handleFavorito" que pasa por parámetros el objeto de tipo IFavorito con el nombre y la imagen del personaje, para agregarlo o quitarlo de la lista.
+   * @returns {void}
+   */
+  const clickFavorito = () => {
+    dispatch(handleFavorito(favorito));
+  };
+
   return (
     <div className="container">
       <h3>{personajeID.name}</h3>
@@ -92,21 +100,21 @@ const PaginaDetalle = () => {
       </div>
       <h4>Lista de episodios donde apareció el personaje</h4>
       <div className={"episodios-grilla"}>
-        <TarjetaEpisodio
-          nombre={episodio.nombre}
-          numeroDeEpisodio={episodio.numeroDeEpisodio}
-          fechaDeLanzamiento={episodio.fechaDeLanzamiento}
-        />
-        <TarjetaEpisodio
-          nombre={episodio.nombre}
-          numeroDeEpisodio={episodio.numeroDeEpisodio}
-          fechaDeLanzamiento={episodio.fechaDeLanzamiento}
-        />
-        <TarjetaEpisodio
-          nombre={episodio.nombre}
-          numeroDeEpisodio={episodio.numeroDeEpisodio}
-          fechaDeLanzamiento={episodio.fechaDeLanzamiento}
-        />
+        {isLoading ? (
+          <p>Cargando, espere por favor...</p>
+        ) : episodiosState.length > 0 ? (
+          episodiosState?.map((episodio) => (
+            <TarjetaEpisodio
+              nombre={episodio.name}
+              numeroDeEpisodio={episodio.episode}
+              fechaDeLanzamiento={episodio.air_date}
+            />
+          ))
+        ) : (
+          <h4>
+            No se ha encontrado registro de las apariciones de este personaje en episodios. 
+          </h4>
+        )}
       </div>
     </div>
   );

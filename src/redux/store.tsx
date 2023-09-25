@@ -5,6 +5,7 @@ import paginacionReducer from "./slices/paginacionSlice";
 import filtroReducer from "./slices/filtroSlice";
 import favoritosReducer from "./slices/favoritosSlice";
 import personajeIDReducer from "./slices/personajeIDSlice";
+import episodiosReducer from "./slices/episodiosSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,7 +13,8 @@ const store = configureStore({
     paginas: paginacionReducer,
     filtro: filtroReducer,
     favoritos: favoritosReducer,
-    personajeID: personajeIDReducer
+    personajeID: personajeIDReducer,
+    listaEpisodios: episodiosReducer
   },
 });
 

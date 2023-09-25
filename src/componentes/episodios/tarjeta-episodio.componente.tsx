@@ -3,7 +3,7 @@ import "./tarjeta-episodio.css";
 export interface episodio {
   nombre: string;
   numeroDeEpisodio: string;
-  fechaDeLanzamiento: Date;
+  fechaDeLanzamiento: string;
 }
 
 export interface IEpisodio {
@@ -13,7 +13,7 @@ export interface IEpisodio {
   episode: string;
   characters: string[];
   url: string;
-  created: Date;
+  created: string;
 }
 
 /**
@@ -29,13 +29,12 @@ const TarjetaEpisodio = ({
   numeroDeEpisodio,
   fechaDeLanzamiento,
 }: episodio) => {
-  const fechaString = fechaDeLanzamiento.toLocaleDateString();
   return (
     <div className="tarjeta-episodio">
       <h4>{nombre}</h4>
       <div>
         <span>{numeroDeEpisodio}</span>
-        <span>Lanzado el: {fechaString}</span>
+        <span>Lanzado el: {fechaDeLanzamiento}</span>
       </div>
     </div>
   );
