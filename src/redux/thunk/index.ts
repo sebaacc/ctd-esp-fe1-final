@@ -6,7 +6,7 @@ import { IPersonaje } from "../../componentes/personajes/grilla-personajes.compo
  * @description Se usa esta función asincrónica para obtener los personajes, con la posibilidad de pasar por parámetro un nombre para filtrar la busqueda de personajes.
  * @param {string} dato 
  * @param {string} parametro
- * @returns {string | error} 
+ * @returns {string} 
  */
 export const getPersonajes = createAsyncThunk(
   "personajes/getPersonajes",
