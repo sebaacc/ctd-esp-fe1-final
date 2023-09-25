@@ -8,7 +8,6 @@ export interface comprobarFavorito {
 }
 
 /**
- * @author Sebastián Alejo Markoja
  * @description Esta es la pagina de favoritos. Aquí se ven todos los personajes marcados como favoritos
  * @example Uso: <PaginaFavoritos />
  * @returns la pagina de favoritos
@@ -40,6 +39,7 @@ const PaginaFavoritos = () => {
         {favoritosState?.map((personaje, index) => (
           <TarjetaPersonaje
             key={index}
+            id={undefined}
             nombre={personaje.nombre}
             imagen={personaje.imagen}
             esFavorito={esFavorito(personaje.nombre, favoritosState)}

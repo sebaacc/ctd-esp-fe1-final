@@ -10,12 +10,18 @@ export interface IPersonaje {
   species?: string;
   type?: string;
   gender?: string;
-  origin?: {};
-  location?: {};
+  origin?: {
+    name: string,
+    url: string
+  };
+  location?: {
+    name: string,
+    url: string
+  };
   image: string;
   episode?: [];
-  url: string;
-  created: string;
+  url?: string;
+  created?: string;
 }
 
 export interface IGrillaPersonajes {
@@ -23,7 +29,6 @@ export interface IGrillaPersonajes {
 }
 
 /**
- * @author Sebastián Alejo Markoja
  * @description Grilla de personajes para la pagina de inicio. Se encuentran las funciones necesarias para mostrar y paginar los personajes
  * @param {IGrillaPersonajes} dataPersonajes
  * @returns la grilla de Personajes
@@ -31,9 +36,7 @@ export interface IGrillaPersonajes {
 
 const GrillaPersonajes = ({ dataPersonajes }: IGrillaPersonajes) => {
   const { isError, isLoading } = useAppSelector((state) => state.personajes);
-  const favoritosState = useAppSelector(
-    (state) => state.favoritos.listaFavoritos
-  );
+  const favoritosState = useAppSelector((state) => state.favoritos.listaFavoritos);
 
   return (
     <div className="grilla-personajes">
@@ -43,6 +46,7 @@ const GrillaPersonajes = ({ dataPersonajes }: IGrillaPersonajes) => {
         dataPersonajes?.map((personaje) => (
           <TarjetaPersonaje
             key={personaje.id}
+            id={personaje.id}
             nombre={personaje.name}
             imagen={personaje.image}
             esFavorito={esFavorito(personaje.name, favoritosState)}

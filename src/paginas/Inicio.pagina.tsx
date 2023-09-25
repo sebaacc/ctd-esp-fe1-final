@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import { clearFiltro } from "../redux/slices/filtroSlice";
 
 /**
- * @author Sebastián Alejo Markoja
  * @description Esta es la pagina principal. Aquí se ve el panel de filtros junto con la grilla de personajes.
  * @exampe Uso: <PaginaInicio/>
  * @returns La pagina de inicio
@@ -15,7 +14,7 @@ import { clearFiltro } from "../redux/slices/filtroSlice";
 const PaginaInicio = () => {
   const dispatch = useAppDispatch();
   const { listaPersonajes } = useAppSelector((state) => state.personajes);
-  const { value: paginaState } = useAppSelector((state) => state.paginas);
+  const { paginaState } = useAppSelector((state) => state.paginas);
 
   useEffect(() => {
     dispatch(getPersonajes({ dato: paginaState, parametro: "page" }));

@@ -6,12 +6,12 @@
  * @returns {boolean}
  */
 export function esFavorito(nombre: string, favoritosState: any[]): boolean {
-    const favoritoIndex = favoritosState.findIndex(
-        (item) => item.nombre === nombre
-      );
-      if (favoritoIndex !== -1) {
-        return true;
-      } else {
-        return false;
-      }
+  const favoritoIndex = favoritosState.findIndex(
+      (item) => item.nombre === nombre
+    );
+    if (favoritoIndex !== -1) {
+      return true;
+    } else {
+      return false;
+    }
 }

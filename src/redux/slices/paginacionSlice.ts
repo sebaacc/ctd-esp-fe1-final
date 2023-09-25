@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export type PaginacionState = {
-  value: number;
+  paginaState: number;
 };
 const initialState: PaginacionState = {
-  value: 1,
+  paginaState: 1,
 };
 
 export const paginacionSlice = createSlice({
@@ -12,10 +12,10 @@ export const paginacionSlice = createSlice({
   initialState: initialState,
   reducers: {
     incrementarPagina: (state) => {
-      state.value += 1;
+      state.paginaState += 1;
     },
     disminuirPagina: (state) => {
-      state.value -= 1;
+      state.paginaState -= 1;
     },
   },
 });

@@ -1,6 +1,9 @@
 import "./Detalle.css";
 import BotonFavorito from "../componentes/botones/boton-favorito.componente";
 import TarjetaEpisodio from "../componentes/episodios/tarjeta-episodio.componente";
+import { useAppDispatch, useAppSelector } from "../redux/store";
+import { esFavorito } from "../funciones/esFavorito";
+import { IFavorito, handleFavorito } from "../redux/slices/favoritosSlice";
 
 export interface IEpisodio {
   nombre: string;
@@ -9,14 +12,10 @@ export interface IEpisodio {
 }
 
 /**
- * Esta es la pagina de detalle. Aqui se puede mostrar la vista sobre el personaje seleccionado junto con la lista de episodios en los que aparece
- *
+ * @description Esta es la pagina de detalle. Aqui se puede mostrar la vista sobre el personaje seleccionado junto con la lista de episodios en los que aparece
  * EL TRABAJO SOBRE ESTE ARCHIVO ES OPCIONAL Y NO ES REQUISITO DE APROBACION
  *
- *
- *
- * Uso:
- * ``` <PaginaDetalle /> ```
+ * @example Uso: ``` <PaginaDetalle /> ```
  *
  * @returns la pagina de detalle
  */
@@ -27,21 +26,41 @@ const PaginaDetalle = () => {
     fechaDeLanzamiento: new Date(),
   };
 
+  const { personajeID } = useAppSelector((state) => state.personajeID);
+  const favoritosState = useAppSelector(
+    (state) => state.favoritos.listaFavoritos
+  );
+  const dispatch = useAppDispatch();
+
+  const favorito: IFavorito = {
+    nombre: personajeID.name,
+    imagen: personajeID.image,
+  };
+
+  /**
+   * @author Sebastián Alejo Markoja
+   * @description Se usa para agregar o eliminar un personaje de la lista de favoritos, cuando se hace click en el botón/elemento donde se ha colocado la función. Activa el reducer "handleFavorito" que pasa por parámetros el objeto de tipo IFavorito con el nombre y la imagen del personaje, para agregarlo o quitarlo de la lista.
+   * @returns {void}
+   */
+  const clickFavorito = () => {
+    dispatch(handleFavorito(favorito));
+  };
+
   return (
     <div className="container">
-      <h3>Rick Sanchez</h3>
+      <h3>{personajeID.name}</h3>
       <div className={"detalle"}>
         <div className={"detalle-header"}>
-          <img
-            src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-            alt="Rick Sanchez"
-          />
+          <img src={personajeID.image} alt={personajeID.name} />
           <div className={"detalle-header-texto"}>
-            <p>Rick Sanchez</p>
-            <p>Planeta: Earth</p>
-            <p>Genero: Male</p>
+            <p>{personajeID.name}</p>
+            <p>Planeta: {personajeID.origin && personajeID.origin.name}</p>
+            <p>Genero: {personajeID.gender}</p>
           </div>
-          <BotonFavorito esFavorito={false} />
+          <BotonFavorito
+            esFavorito={esFavorito(personajeID.name, favoritosState)}
+            onClick={clickFavorito}
+          />
         </div>
       </div>
       <h4>Lista de episodios donde apareció el personaje</h4>

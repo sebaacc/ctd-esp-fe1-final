@@ -1,16 +1,18 @@
+import { Link } from "react-router-dom";
 import { handleFavorito } from "../../redux/slices/favoritosSlice";
 import { useAppDispatch } from "../../redux/store";
+import { getPersonajeID } from "../../redux/thunk";
 import BotonFavorito from "../botones/boton-favorito.componente";
 import "./tarjeta-personaje.css";
 
 export interface ITarjetaPersonaje {
+  id: number | undefined;
   nombre: string;
   imagen: string;
   esFavorito: boolean;
 }
 
 /**
- * @author Sebastián Alejo Markoja
  * @description Tarjeta para cada personaje dentro de la grilla de personajes.
  * Tiene propiedades para mostrar los datos de los personajes. Por parámetros recibe nombre, imagen y esFavorito.
  * @param {string} nombre
@@ -19,6 +21,7 @@ export interface ITarjetaPersonaje {
  * @returns la tarjeta del personaje
  */
 const TarjetaPersonaje = ({
+  id,
   nombre,
   imagen,
   esFavorito,
@@ -34,9 +37,21 @@ const TarjetaPersonaje = ({
     dispatch(handleFavorito({ nombre, imagen }));
   };
 
+  /**
+   * @author Sebastián Alejo Markoja
+   * @description Se encarga de activar el reducer de getPersonajeID, el cual recibe como parámetro el ID del personaje seleccionado y obtiene de la api su información.
+   * @param {number | undefined} id
+   * @returns {void}
+   */
+  const buscarPersonajeID = (id: number | undefined) => {
+    dispatch(getPersonajeID(id));
+  };
+
   return (
     <div className="tarjeta-personaje">
-      <img src={imagen} alt={nombre} />
+      <Link to="detalle" onClick={() => buscarPersonajeID(id)}>
+        <img src={imagen} alt={nombre} />
+      </Link>
       <div className="tarjeta-personaje-body">
         <span>{nombre}</span>
         <BotonFavorito esFavorito={esFavorito} onClick={clickFavorito} />
