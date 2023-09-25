@@ -13,6 +13,7 @@ export interface ITarjetaPersonaje {
 }
 
 /**
+ * @author Sebastián Alejo Markoja
  * @description Tarjeta para cada personaje dentro de la grilla de personajes.
  * Tiene propiedades para mostrar los datos de los personajes. Por parámetros recibe nombre, imagen y esFavorito.
  * @param {string} nombre
