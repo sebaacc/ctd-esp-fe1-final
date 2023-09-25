@@ -5,9 +5,9 @@
  * @param {any} favoritosState  Es el array de favoritos actual donde se buscará el personaje.
  * @returns {boolean}
  */
-export function esFavorito(nombre: string, favoritosState: any[]): boolean {
+export function esFavorito(id: number | undefined, favoritosState: any[]): boolean {
   const favoritoIndex = favoritosState.findIndex(
-      (item) => item.nombre === nombre
+      (item) => item.id === id
     );
     if (favoritoIndex !== -1) {
       return true;

@@ -49,7 +49,7 @@ const GrillaPersonajes = ({ dataPersonajes }: IGrillaPersonajes) => {
             id={personaje.id}
             nombre={personaje.name}
             imagen={personaje.image}
-            esFavorito={esFavorito(personaje.name, favoritosState)}
+            esFavorito={esFavorito(personaje.id, favoritosState)}
           />
         ))
       )}

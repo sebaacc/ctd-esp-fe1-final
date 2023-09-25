@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface IFavorito {
+  id?: number,
   nombre: string;
   imagen: string;
 }
@@ -24,7 +25,7 @@ export const favoritosSlice = createSlice({
   reducers: {
     handleFavorito: (state, action) => {
       const favoritoIndex = state.listaFavoritos.findIndex(
-        (item) => item.nombre === action.payload.nombre
+        (item) => item.id === action.payload.id
       );
 
       if (favoritoIndex !== -1) {

@@ -39,10 +39,10 @@ const PaginaFavoritos = () => {
         {favoritosState?.map((personaje, index) => (
           <TarjetaPersonaje
             key={index}
-            id={undefined}
+            id={personaje.id}
             nombre={personaje.nombre}
             imagen={personaje.imagen}
-            esFavorito={esFavorito(personaje.nombre, favoritosState)}
+            esFavorito={esFavorito(personaje.id, favoritosState)}
           />
         ))}
         {favoritosState.length == 0 ? (

@@ -35,7 +35,7 @@ const TarjetaPersonaje = ({
    * @returns {void}
    */
   const clickFavorito = () => {
-    dispatch(handleFavorito({ nombre, imagen }));
+    dispatch(handleFavorito({ id, nombre, imagen }));
   };
 
   /**

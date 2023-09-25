@@ -33,6 +33,7 @@ const PaginaDetalle = () => {
   const dispatch = useAppDispatch();
 
   const favorito: IFavorito = {
+    id: personajeID.id,
     nombre: personajeID.name,
     imagen: personajeID.image,
   };
@@ -58,7 +59,7 @@ const PaginaDetalle = () => {
             <p>Genero: {personajeID.gender}</p>
           </div>
           <BotonFavorito
-            esFavorito={esFavorito(personajeID.name, favoritosState)}
+            esFavorito={esFavorito(personajeID.id, favoritosState)}
             onClick={clickFavorito}
           />
         </div>
