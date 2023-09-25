@@ -36,16 +36,16 @@ const PaginaFavoritos = () => {
         </button>
       </div>
       <div className="grilla-personajes">
-        {favoritosState?.map((personaje, index) => (
+        {favoritosState?.map((personaje) => (
           <TarjetaPersonaje
-            key={index}
+            key={personaje.id}
             id={personaje.id}
             nombre={personaje.nombre}
             imagen={personaje.imagen}
             esFavorito={esFavorito(personaje.id, favoritosState)}
           />
         ))}
-        {favoritosState.length == 0 ? (
+        {favoritosState.length === 0 ? (
           <h3>No hay favoritos, seleccionalos en el Inicio!</h3>
         ) : (
           ""
