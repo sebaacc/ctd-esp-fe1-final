@@ -15,7 +15,8 @@ export interface ITarjetaPersonaje {
 /**
  * @author Sebastián Alejo Markoja
  * @description Tarjeta para cada personaje dentro de la grilla de personajes.
- * Tiene propiedades para mostrar los datos de los personajes. Por parámetros recibe nombre, imagen y esFavorito.
+ * Tiene propiedades para mostrar los datos de los personajes. Por parámetros recibe id, nombre, imagen y esFavorito.
+ * @param {number} id
  * @param {string} nombre
  * @param {string} imagen
  * @param {boolean} esFavorito
@@ -31,7 +32,7 @@ const TarjetaPersonaje = ({
 
   /**
    * @author Sebastián Alejo Markoja
-   * @description Se usa para agregar o eliminar un personaje de la lista de favoritos, cuando se hace click en el botón/elemento donde se ha colocado la función. Activa el reducer "handleFavorito" que pasa por parámetros el nombre y la imagen del personaje para agregarlo o quitarlo de la lista.
+   * @description Se usa para agregar o eliminar un personaje de la lista de favoritos, cuando se hace click en el botón/elemento donde se ha colocado la función. Activa el reducer "handleFavorito" que se le pasa como argumentos el id, nombre y la imagen del personaje para agregarlo si no lo ha encontrado en la lista, o quitarlo si es que ya se encontraba en la misma.
    * @returns {void}
    */
   const clickFavorito = () => {
@@ -41,7 +42,7 @@ const TarjetaPersonaje = ({
   /**
    * @author Sebastián Alejo Markoja
    * @description Se encarga de activar el reducer de getPersonajeID, el cual recibe como parámetro el ID del personaje seleccionado y obtiene de la api su información.
-   * @param {number | undefined} id
+   * @param {number} id
    * @returns {void}
    */
   const buscarPersonajeID = (id: number | undefined) => {

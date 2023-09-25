@@ -1,9 +1,6 @@
 import "./Detalle.css";
 import BotonFavorito from "../componentes/botones/boton-favorito.componente";
-import TarjetaEpisodio, {
-  IEpisodio,
-  episodio,
-} from "../componentes/episodios/tarjeta-episodio.componente";
+import TarjetaEpisodio from "../componentes/episodios/tarjeta-episodio.componente";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { esFavorito } from "../funciones/esFavorito";
 import { IFavorito, handleFavorito } from "../redux/slices/favoritosSlice";
@@ -112,7 +109,8 @@ const PaginaDetalle = () => {
           ))
         ) : (
           <h4>
-            No se ha encontrado registro de las apariciones de este personaje en episodios. 
+            No se ha encontrado registro de las apariciones de este personaje en
+            episodios.
           </h4>
         )}
       </div>

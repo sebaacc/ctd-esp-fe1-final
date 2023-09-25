@@ -1,6 +1,6 @@
 import "./tarjeta-episodio.css";
 
-export interface episodio {
+export interface datosEpisodio {
   nombre: string;
   numeroDeEpisodio: string;
   fechaDeLanzamiento: string;
@@ -17,18 +17,15 @@ export interface IEpisodio {
 }
 
 /**
- * Tarjeta para cada episodio dentro de la vista de personaje.
- *
- * Deberás agregar las propiedades necesarias para mostrar los datos de los episodios
- *
- *
- * @returns un JSX element
+ * @description Tarjeta para cada episodio dentro de la vista de personaje.
+ * 
+ * @returns un TSX element
  */
 const TarjetaEpisodio = ({
   nombre,
   numeroDeEpisodio,
   fechaDeLanzamiento,
-}: episodio) => {
+}: datosEpisodio) => {
   return (
     <div className="tarjeta-episodio">
       <h4>{nombre}</h4>

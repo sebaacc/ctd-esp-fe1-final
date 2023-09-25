@@ -22,7 +22,7 @@ const PaginaInicio = () => {
 
   /**
    * @author Sebastián Alejo Markoja
-   * @description Sirve para limpiar/vaciar el filtro buscador de la página de inicio. Activa el reducer "clearFiltro" que limpia el estado de "filtroState" y luego activa el reducer "getPersonajes" para volver a consumir la api mostrando los resultados iniciales.
+   * @description Sirve para limpiar/vaciar el filtro buscador de la página de inicio. Activa el reducer "clearFiltro" que limpia el estado de "filtroState" y luego activa el reducer "getPersonajes" para volver a consumir la api y mostrar todos los personajes.
    * @returns {void}
    */
   const limpiar = () => {

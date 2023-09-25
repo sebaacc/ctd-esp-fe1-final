@@ -5,7 +5,7 @@ import { IEpisodio } from "../../componentes/episodios/tarjeta-episodio.componen
 /***
  * @author Sebastián Alejo Markoja
  * @description Se usa esta función asincrónica para obtener los personajes, con la posibilidad de pasar por parámetro un nombre para filtrar la busqueda de personajes.
- * @param {string} dato
+ * @param {string | number} dato
  * @param {string} parametro
  * @returns {IPersonaje[]}
  */

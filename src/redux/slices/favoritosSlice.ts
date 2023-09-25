@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface IFavorito {
-  id?: number,
+  id?: number;
   nombre: string;
   imagen: string;
 }

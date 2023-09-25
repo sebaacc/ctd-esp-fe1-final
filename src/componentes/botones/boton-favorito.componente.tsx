@@ -8,9 +8,8 @@ export interface IBotonFavorito {
 /**
  * @author Sebastián Alejo Markoja
  * @description Boton que indica si un elemento es favorito o no, y da la posibilidad de marcarlo/desmarcarlo.
- * @param {IBotonFavorito} esFavorito
- * @param {IBotonFavorito} onClick
- * @returns el botón para marcar como favorito
+ * @param {IBotonFavorito} {esFavorito, onClick}
+ * @returns un TSX element
  */
 const BotonFavorito = ({ esFavorito, onClick }: IBotonFavorito) => {
   const src = esFavorito ? "/imagenes/star-filled.png" : "/imagenes/star.png";
