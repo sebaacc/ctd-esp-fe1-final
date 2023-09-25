@@ -1,12 +1,12 @@
 import "./tarjeta-episodio.css";
 
-export interface IEpisodio {
+export interface episodio {
   nombre: string;
   numeroDeEpisodio: string;
   fechaDeLanzamiento: Date;
 }
 
-export interface episodio {
+export interface IEpisodio {
   id: number;
   name: string;
   air_date: string;
@@ -28,7 +28,7 @@ const TarjetaEpisodio = ({
   nombre,
   numeroDeEpisodio,
   fechaDeLanzamiento,
-}: IEpisodio) => {
+}: episodio) => {
   const fechaString = fechaDeLanzamiento.toLocaleDateString();
   return (
     <div className="tarjeta-episodio">

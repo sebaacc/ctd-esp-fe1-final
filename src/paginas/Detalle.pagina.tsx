@@ -1,15 +1,10 @@
 import "./Detalle.css";
 import BotonFavorito from "../componentes/botones/boton-favorito.componente";
-import TarjetaEpisodio from "../componentes/episodios/tarjeta-episodio.componente";
+import TarjetaEpisodio, { IEpisodio, episodio } from "../componentes/episodios/tarjeta-episodio.componente";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import { esFavorito } from "../funciones/esFavorito";
 import { IFavorito, handleFavorito } from "../redux/slices/favoritosSlice";
-
-export interface IEpisodio {
-  nombre: string;
-  numeroDeEpisodio: string;
-  fechaDeLanzamiento: Date;
-}
+import { IPersonaje } from "../componentes/personajes/grilla-personajes.componente";
 
 /**
  * @description Esta es la pagina de detalle. Aqui se puede mostrar la vista sobre el personaje seleccionado junto con la lista de episodios en los que aparece
@@ -20,7 +15,7 @@ export interface IEpisodio {
  * @returns la pagina de detalle
  */
 const PaginaDetalle = () => {
-  const episodio: IEpisodio = {
+  const episodio: episodio = {
     nombre: "Sebastián",
     numeroDeEpisodio: "469",
     fechaDeLanzamiento: new Date(),
@@ -46,6 +41,37 @@ const PaginaDetalle = () => {
   const clickFavorito = () => {
     dispatch(handleFavorito(favorito));
   };
+
+  /**
+   * @author Sebastián Alejo Markoja
+   * @description Esta función toma un objeto de personaje como parámetro y recorre el array de URLs en la propiedad "episode". Divide cada URL en partes utilizando "/" como separador y obtiene el último elemento, que contiene el id del episodio. Luego, convierte ese ID en un número y lo agrega a un array llamado "episodeIds". Finalmente, devuelve el array de IDs extraídos.
+   * @param personaje
+   * @returns {number[]}
+   */
+  function extraerEpisodiosID(
+    personaje:
+      | IPersonaje
+      | {
+          episode: string[];
+        }
+  ): number[] {
+    const episodeIds: number[] = [];
+    if (personaje.episode && Array.isArray(personaje.episode)) {
+      for (const episodeUrl of personaje.episode) {
+        const partes = episodeUrl.split("/");
+        const idString = partes[partes.length - 1];
+
+        const id = parseInt(idString, 10);
+        if (!isNaN(id)) {
+          episodeIds.push(id);
+        }
+      }
+    }
+
+    return episodeIds;
+  }
+
+  const episodeIds = extraerEpisodiosID(personajeID);
 
   return (
     <div className="container">
